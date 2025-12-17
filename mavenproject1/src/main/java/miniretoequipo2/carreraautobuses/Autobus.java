@@ -26,9 +26,10 @@ public class Autobus {
 
     }
 
-    public void dibujar() {
+    public void dibujar(int meta) {
         for (int i = 0; i < bus.length; i++) {
-            System.out.println(" ".repeat(posicion) + bus[i]);
+            System.out.println(" ".repeat(posicion) + bus[i]+ 
+                    " ".repeat(meta-posicion-bus[i].length()) + "|"); // 
         }
     }
 
@@ -44,4 +45,13 @@ public class Autobus {
         return bus.length;
     }
     
+    public int getMayor(){
+        int mayor=0;
+        for (int i = 0; i < bus.length; i++) {
+            if (bus[i].length()>mayor) {
+                mayor=bus[i].length();
+            }
+        }
+        return mayor;
+    }
 }

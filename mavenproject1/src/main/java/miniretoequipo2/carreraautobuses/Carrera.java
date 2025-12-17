@@ -20,28 +20,33 @@ public class Carrera {
     }
 
     public void iniciar() throws InterruptedException {
-        do {
+        while (!hayGanador) {
             for (Autobus bus : buses) {
-                bus.dibujar();
+                bus.dibujar(meta);
                 bus.avanzar();
-                int tiempo  = (int) Math.random() * 3000 + 200;
+                int tiempo = (int) Math.random() * 3000 + 200;
                 Thread.sleep(tiempo);
-                
-                if ((bus.getPosicion()+bus.getLength())>= meta) {
-                    hayGanador=true;
+
+                if ((bus.getPosicion() + bus.getMayor()) >= meta) { // !!
+                    hayGanador = true;
                     bus.setGanador();
                 }
             }
-        } while (!hayGanador);
+        };
     }
-    
+
     public static void limpiarPantalla() {
-        
-        for (int i  = 0; i < 40; i++) {
-            
+
+        for (int i = 0; i < 40; i++) {
+
             System.out.println();
-            
+
         }
-        
+
     }
+
+    public int getMeta() {
+        return meta;
+    }
+
 }
