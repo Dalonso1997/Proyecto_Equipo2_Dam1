@@ -22,13 +22,18 @@ public class Autobus {
     }
 
     public void avanzar() {
-        posicion += (int)(Math.random() * 4); //num 0-3
+        posicion += 1; 
 
     }
 
     public void dibujar() {
         for (int i = 0; i < bus.length; i++) {
+<<<<<<< Updated upstream
             System.out.println(" ".repeat(posicion) + bus[i]);
+=======
+            System.out.println(" ".repeat(posicion) + bus[i]+ 
+                    " ".repeat(meta-posicion-bus[i].length()) + "|"); //escribe los espacios que faltan desde el bus hasta la meta
+>>>>>>> Stashed changes
         }
     }
 
@@ -40,8 +45,20 @@ public class Autobus {
         return posicion;
     }
 
-    public int getLength() {
+    public int getLength() { // length del array del texto del bus (no de buses)
         return bus.length;
     }
     
+<<<<<<< Updated upstream
+=======
+    public int getMayor(){
+        int mayor=0;
+        for (int i = 0; i < bus.length; i++) { // recorre el array del texto del bus y se queda con el length de la mas larga
+            if (bus[i].length()>mayor) {
+                mayor=bus[i].length();
+            }
+        }
+        return mayor;
+    }
+>>>>>>> Stashed changes
 }
