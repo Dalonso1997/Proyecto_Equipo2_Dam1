@@ -19,11 +19,13 @@ public class Carrera {
         this.buses = buses;
     }
 
-    public void iniciar() {
+    public void iniciar() throws InterruptedException {
         do {
             for (Autobus bus : buses) {
                 bus.dibujar();
                 bus.avanzar();
+                int tiempo  = (int) Math.random() * 3000 + 200;
+                Thread.sleep(tiempo);
                 
                 if ((bus.getPosicion()+bus.getLength())>= meta) {
                     hayGanador=true;
@@ -31,5 +33,15 @@ public class Carrera {
                 }
             }
         } while (!hayGanador);
+    }
+    
+    public static void limpiarPantalla() {
+        
+        for (int i  = 0; i < 40; i++) {
+            
+            System.out.println();
+            
+        }
+        
     }
 }
