@@ -3,14 +3,12 @@
  */
 
 package miniretoequipo2.carreraautobuses;
-
 /**
  *
  * @author DAM104
  */
 public class CarreraDeBuses {
 
-    public static void main(String[] args) {
     public static void main(String[] args) throws InterruptedException {
         
         Autobus a1= new Autobus();
