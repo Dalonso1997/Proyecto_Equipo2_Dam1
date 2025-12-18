@@ -13,8 +13,12 @@ public class CarreraDeBuses {
         
         Autobus a1= new Autobus();
         Autobus a2= new Autobus();
+        Autobus a1= new Autobus(1);
+        Autobus a2= new Autobus(2);
         Autobus[] buses={a1, a2};
         Carrera c= new Carrera(50,buses);
+        Carrera c= new Carrera(100,buses);
         c.iniciar();
+        c.darGanador();
     }
 }

@@ -7,6 +7,7 @@ import miniretoequipo2.damas.Damas;
 public class Main {
 
     public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner teclado = new Scanner(System.in);
         int opcion;
 

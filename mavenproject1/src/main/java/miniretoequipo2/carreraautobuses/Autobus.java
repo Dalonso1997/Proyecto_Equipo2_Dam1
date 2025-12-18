@@ -10,6 +10,7 @@ package miniretoequipo2.carreraautobuses;
  */
 public class Autobus {
 
+    private int numero;
     private int posicion = 0;
     private boolean ganador = false;
     private final String[] bus = {
@@ -25,11 +26,25 @@ public class Autobus {
     };
 
     public Autobus() {
+    private String[] bus;
 
+    public Autobus(int numero) {
+        this.numero = numero;
+        bus = new String[]{
+            "   __________________________",
+            "  (_________________________@)",
+            "  /  |  ".concat(Integer.toString(numero)).concat("  |  |  |  |  |  || `\\"), // concatena el numero del autobus pasado a string
+            "  |__|_____|__|__|__|__|__||___\\",
+            "  |===================   | : |`'-._",
+            " _|    .-.                 | : | ,===`\\",
+            "'=|___/.-.\\________________|_:_|_/.-.\\|",
+            "      \\'-'/                      \\'-'/",
+            "_______'-'________________________'-'" // (ejemplo)
+        };
     }
 
     public void avanzar() {
-        posicion += 1;
+        posicion += (int) ((Math.random() * 3) + 1); // avanza de 1 a 3 espacios
 
     }
 
@@ -39,6 +54,13 @@ public class Autobus {
             System.out.println(" ".repeat(posicion) + bus[i]
                     + " ".repeat(meta - posicion - bus[i].length()) + "|"); //escribe los espacios que faltan desde el bus hasta la meta
 
+            if (i != bus.length - 1) {
+                System.out.println(" ".repeat(posicion + 1) + bus[i]
+                        + " ".repeat(meta - posicion - bus[i].length()) + "|"); //escribe los espacios que faltan desde el bus hasta la meta
+            } else {
+                System.out.println("_".repeat(posicion + 1) + bus[i] //si es la ultima linea en vez de imprimir espacios lo llena con _ simulando suelo
+                        + "_".repeat(meta - posicion - bus[i].length()) + "|");
+            }
         }
     }
 
@@ -67,4 +89,13 @@ public class Autobus {
         }
         return mayor;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public boolean isGanador() {
+        return ganador;
+    }
+
 }
