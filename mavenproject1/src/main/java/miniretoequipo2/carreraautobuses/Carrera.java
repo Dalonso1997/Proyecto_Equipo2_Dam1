@@ -13,7 +13,6 @@ public class Carrera {
     private int meta;
     private boolean hayGanador = false;
     private Autobus[] buses;
-    
 
     public Carrera(int meta, Autobus[] buses) {
         this.meta = meta;
@@ -26,12 +25,6 @@ public class Carrera {
     public void iniciar() throws InterruptedException {
         do {
             for (Autobus bus : buses) {
-                bus.dibujar(meta);
-                bus.avanzar();
-
-                int tiempo = (int) Math.random() * 3000 + 200; // escoge un tiempo rndom entre 0,2 y 3 seg
-                Thread.sleep(tiempo);
-
                 if (!hayGanador) {
                     bus.dibujar(meta);
                     bus.avanzar();
@@ -52,7 +45,6 @@ public class Carrera {
         } while (!hayGanador);
     }
 
-    public static void limpiarPantalla() { // imprime espacios, no se usa todavia
     /*  public static void limpiarPantalla() { // imprime lineas vacias para parecer q pasa de pantalla
 
         for (int i = 0; i < 40; i++) {
@@ -60,8 +52,6 @@ public class Carrera {
             System.out.println();
 
         }
-
-    }
 
     } */
     public int getMeta() {

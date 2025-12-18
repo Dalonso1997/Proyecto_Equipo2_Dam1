@@ -13,19 +13,6 @@ public class Autobus {
     private int numero;
     private int posicion = 0;
     private boolean ganador = false;
-    private final String[] bus = {
-        "   __________________________",
-        "  (_________________________@)",
-        "  /  |  |  |  |  |  |  |  || `\\",
-        "  |__|__|__|__|__|__|__|__||___\\",
-        "  |===================   | : |`'-._",
-        " _|    .-.                 | : | ,===`\\",
-        "'=|___/.-.\\________________|_:_|_/.-.\\|",
-        "      \\'-'/                      \\'-'/",
-        "        '-'                        '-'" // (ejemplo)
-    };
-
-    public Autobus() {
     private String[] bus;
 
     public Autobus(int numero) {
@@ -50,10 +37,6 @@ public class Autobus {
 
     public void dibujar(int meta) {
         for (int i = 0; i < bus.length; i++) {
-
-            System.out.println(" ".repeat(posicion) + bus[i]
-                    + " ".repeat(meta - posicion - bus[i].length()) + "|"); //escribe los espacios que faltan desde el bus hasta la meta
-
             if (i != bus.length - 1) {
                 System.out.println(" ".repeat(posicion + 1) + bus[i]
                         + " ".repeat(meta - posicion - bus[i].length()) + "|"); //escribe los espacios que faltan desde el bus hasta la meta
@@ -81,9 +64,6 @@ public class Autobus {
         for (int i = 0; i < bus.length; i++) { // recorre el array del texto del bus y se queda con el length de la mas larga
             if (bus[i].length() > mayor) {
                 mayor = bus[i].length();
-                if (bus[i].length() > mayor) {
-                    mayor = bus[i].length();
-                }
             }
 
         }
