@@ -35,7 +35,23 @@ public class CuatroEnRaya {
                     System.out.println("Columna llena o invalida. Intenta otra.");
                 }
             }
-
+            
+            hayGanador = tablero.hayGanador(ficha);
+            
+            if(hayGanador && ficha == 'X'){
+                
+                System.out.println("El ganador es el Jugador 1!!"
+                        + "\nEnhorabuena!"
+                        + "\nSaliendo....Hasta pronto!!");
+                
+            } else if (hayGanador && ficha == 'O'){
+                
+                System.out.println("El ganador es el Jugador 2!!"
+                        + "\nEnhorabuena!!"
+                        + "\nSaliendo....Hasta pronto!");
+                
+            }
+            
             // Cambio de jugador SOLO si el movimiento fue valido
             if (ficha == 'X') {
                 ficha = 'O';
@@ -45,6 +61,7 @@ public class CuatroEnRaya {
 
         } while (!hayGanador);
 
-        teclado.close();
+        
     }
+    
 }

@@ -72,8 +72,8 @@ public class Tablero {
                 }
             }
         }
-        
-        // comprobacion horizontal (mismas columnas, filas consecutivas)
+        //Comentario de prueba
+        // comprobacion vertical (mismas columnas, filas consecutivas)
         for (int i = 0; i < 3; i++) { 
             for (int j = 0; j < 7; j++) {
                 if (celdas[i][j] == ficha && celdas[i + 1][j] == ficha && celdas[i + 2][j] == ficha && celdas[i + 3][j] == ficha){
