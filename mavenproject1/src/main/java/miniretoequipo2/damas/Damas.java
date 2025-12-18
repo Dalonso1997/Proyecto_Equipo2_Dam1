@@ -1,10 +1,10 @@
 package miniretoequipo2.damas;
 
 public class Damas {
-    private Jugador jugadorBlanco;
-    private Jugador jugadorNegro;
+
     public void iniciar() {
-        new Jugador().mostrarEstadisticas();
-        new Tablero().mostrarTablero();
+        Tablero tablero = new Tablero();  // crear un único tablero
+        tablero.inicializarTablero();     // inicializar fichas
+        tablero.mostrarTablero();         // mostrar el mismo tablero
     }
 }
