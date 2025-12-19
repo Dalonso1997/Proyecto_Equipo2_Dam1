@@ -104,5 +104,26 @@ public class Tablero {
         }
         return false;
     }
+    
+    public boolean comprobarEmpate(){
+        
+        int contadorFichas = 0;
+        
+        //para comprobar el empate, revisamos todo el tablero buscando si todos los huecos estan ocupados, en caso de que asi sea, el boolean pasa a true
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                
+                if (celdas[i][j] != ' ') {
+                    
+                    contadorFichas++;
+           
+                }
+                
+            }
+        }
+        
+        return false;
+        
+    }
 }
 

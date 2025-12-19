@@ -16,6 +16,7 @@ public class CuatroEnRaya {
         Tablero tablero = new Tablero();
 
         boolean hayGanador = false;
+        boolean hayEmpate = false;
         char ficha = 'X';
 
         do {
@@ -37,6 +38,8 @@ public class CuatroEnRaya {
             }
             
             hayGanador = tablero.hayGanador(ficha);
+            //hayEmpate = tablero.comprobarEmpate();
+            
             
             if(hayGanador && ficha == 'X'){
                 
@@ -59,7 +62,7 @@ public class CuatroEnRaya {
                 ficha = 'X';
             }
 
-        } while (!hayGanador);
+        } while (!hayGanador && !hayEmpate);
 
         
     }
