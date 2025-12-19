@@ -1,6 +1,5 @@
 package miniretoequipo2.damas;
 
-package miniretoequipo2.damas;
 
 /**
  *
@@ -165,7 +164,7 @@ public class Tablero {
     }
     
     
-    public boolean moverFicha(String origen, String destino){
+    /*public boolean moverFicha(String origen, String destino){
     
         int[] Arrayorigen = convertirPosicion(origen);
         int[] Arraydestino = convertirPosicion(destino);
@@ -174,4 +173,4 @@ public class Tablero {
     
     
     }
-}
+}*/
