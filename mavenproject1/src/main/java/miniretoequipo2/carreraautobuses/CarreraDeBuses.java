@@ -3,7 +3,6 @@
  */
 
 package miniretoequipo2.carreraautobuses;
-
 /**
  *
  * @author DAM104
@@ -11,11 +10,13 @@ package miniretoequipo2.carreraautobuses;
 public class CarreraDeBuses {
 
     public static void main(String[] args) throws InterruptedException {
-        
-        Autobus a1= new Autobus();
-        Autobus a2= new Autobus();
-        Autobus[] buses={a1, a2};
-        Carrera c= new Carrera(50,buses);
+        // CLASE DE PRUEBAS !! se puede borrar
+        Autobus a1= new Autobus(1);
+        Autobus a2= new Autobus(2);
+        Autobus a3= new Autobus(3);
+        Autobus[] buses={a1, a2, a3};
+        Carrera c= new Carrera(100,buses);
         c.iniciar();
+        c.darGanador();
     }
 }

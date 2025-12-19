@@ -1,12 +1,13 @@
 package miniretoequipo2;
 
 import java.util.Scanner;
-import miniretoequipo2.carreraautobuses.CarreraAutobuses;
+import miniretoequipo2.carreraautobuses.Carrera;
+import miniretoequipo2.carreraautobuses.Autobus;
 import miniretoequipo2.damas.Damas;
 import miniretoequipo2.cuatroenraya.CuatroEnRaya;
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner teclado = new Scanner(System.in);
         int opcion;
 
@@ -21,7 +22,16 @@ public class Main {
             opcion = teclado.nextInt();
 
             switch (opcion) {
-                case 1 -> new CarreraAutobuses().iniciar();
+                case 1 -> {System.out.println("¿Cuantos autobuses quieres?");
+                int num=new Scanner(System.in).nextInt();
+                Autobus[] buses=new Autobus[num];  // array de autobuses q se llena automaticamente
+                    for (int i = 0; i < num; i++) {
+                        buses[i]= new Autobus(i+1);
+                    }
+                    Carrera c= new Carrera(100,buses); // crea una carrera y llama a los metodos de iniciar y dar ganador
+                    c.iniciar();
+                    c.darGanador();
+                }
                 case 2 -> new Damas().iniciar();
                 case 3 -> new CuatroEnRaya().iniciar();
                 case 0 -> System.out.println("Saliendo...");

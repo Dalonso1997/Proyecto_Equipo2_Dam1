@@ -19,23 +19,33 @@ public class Carrera {
         this.buses = buses;
     }
 
-    public void iniciar() throws InterruptedException {
-        while (!hayGanador) {
-            for (Autobus bus : buses) {
-                bus.dibujar(meta);
-                bus.avanzar();
-                int tiempo = (int) Math.random() * 3000 + 200;
-                Thread.sleep(tiempo);
+    public Carrera() {
+    }
 
-                if ((bus.getPosicion() + bus.getMayor()) >= meta) { // !!
+    public void iniciar() throws InterruptedException {
+        do {
+            for (Autobus bus : buses) {
+                if (!hayGanador) {
+                    bus.dibujar(meta);
+                    bus.avanzar();
+                    
+                }
+            }
+            
+            for (Autobus bus : buses) {
+                if ((bus.getPosicion() + bus.getMayor()) >= meta) { // compara la posicion + la linea mas larga del bus con la meta
                     hayGanador = true;
+
                     bus.setGanador();
                 }
             }
-        };
+            Thread.sleep(500); // pausa un segundo
+                    
+            Funciones.limpiar();
+        } while (!hayGanador);
     }
 
-    public static void limpiarPantalla() {
+    /*  public static void limpiarPantalla() { // imprime lineas vacias para parecer q pasa de pantalla
 
         for (int i = 0; i < 40; i++) {
 
@@ -43,10 +53,22 @@ public class Carrera {
 
         }
 
-    }
-
+    } */
     public int getMeta() {
         return meta;
+    }
+
+    public void darGanador() {
+        int contadorGanadores = 0;
+        for (Autobus bus : buses) {
+            if (bus.isGanador()) {
+                System.out.println("El autobus " + bus.getNumero() + " gana!!");
+                contadorGanadores++;
+            }
+        }
+        if (contadorGanadores > 1) {
+            System.out.println("Hay empate!");
+        }
     }
 
 }
