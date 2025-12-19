@@ -70,5 +70,8 @@ public class Carrera {
             System.out.println("Hay empate!");
         }
     }
-
+    
+    public int getNumBuses(){
+        return buses.length;
+    }
 }
