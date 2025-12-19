@@ -16,8 +16,8 @@ public class CuatroEnRaya {
         Tablero tablero = new Tablero();
 
         boolean hayGanador = false;
-        boolean hayEmpate = false;
         char ficha = 'X';
+        int jugadas = 1;
 
         do {
             tablero.mostrar();
@@ -38,7 +38,7 @@ public class CuatroEnRaya {
             }
             
             hayGanador = tablero.hayGanador(ficha);
-            hayEmpate = tablero.comprobarEmpate();
+            //hayEmpate = tablero.comprobarEmpate();
             
             
             if(hayGanador && ficha == 'X'){
@@ -55,14 +55,22 @@ public class CuatroEnRaya {
                 
             }
             
+            jugadas --;
+            
             // Cambio de jugador SOLO si el movimiento fue valido
-            if (ficha == 'X') {
+            if (!hayGanador && ficha == 'X') {
                 ficha = 'O';
-            } else {
+            } else if (!hayGanador && ficha == 'O'){
                 ficha = 'X';
             }
+            
+            if (jugadas == 0) {
+                
+                System.out.println("EMPATE!!");
+                
+            }
 
-        } while (!hayGanador && !hayEmpate);
+        } while (!hayGanador && jugadas == 0);
 
         
     }

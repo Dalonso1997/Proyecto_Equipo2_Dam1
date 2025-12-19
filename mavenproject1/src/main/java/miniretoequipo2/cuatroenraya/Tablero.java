@@ -105,7 +105,7 @@ public class Tablero {
         return false;
     }
 
-    public boolean comprobarEmpate() {
+   /* public boolean comprobarEmpate() {
 
         int contadorFichas = 0;
 
@@ -124,5 +124,5 @@ public class Tablero {
         }
         System.out.println("EMPATE!");
         return true;
-    }
+    }*/
 }
