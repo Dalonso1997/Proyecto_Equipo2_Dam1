@@ -127,10 +127,37 @@ public class Tablero {
         return false;
         }
     }
-
-   /* public boolean posiblesMovimientos(String pos){
+    
+    
+    
+    public boolean posiblesMovimientos(String pos ,String destino){
         
-        int[] Array = convertirPosicion(pos);
+        int[] arrayOrigen = convertirPosicion(pos);
+        int[] arrayDestino = convertirPosicion(destino);
+        
+        int fila = arrayOrigen[0];
+        int columna = arrayOrigen[1];
+        
+        int filaDestino = arrayDestino[0];
+        int columnaDestino = arrayDestino[1];
+
+
+        if(tablero[fila][columna] == 1){ //Significa que es una ficha X
+          
+            if(tablero[filaDestino][columnaDestino] == tablero[fila +1][columna -1] || 
+               tablero[filaDestino][columnaDestino] == tablero[fila +1][columna +1] &&
+               esCeldaVacia(filaDestino, columnaDestino) == true){
+
+                }
+                
+            
+            }
+
+            
+            
+            
+        }
+
         
     
     }
@@ -144,5 +171,5 @@ public class Tablero {
         
     
     
-    }*/
+    }
 }
