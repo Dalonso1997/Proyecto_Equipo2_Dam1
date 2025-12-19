@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Fondo</title>
+
+<style>
+  /* Quitamos márgenes y scroll para que el canvas ocupe toda la pantalla */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: black;
+  }
+
+  /* El canvas se comporta como bloque */
+  canvas {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<!-- Lienzo donde se dibuja todo -->
+<canvas id="matrix"></canvas>
+
+<script>
+/* =========================================================
+   REFERENCIAS BÁSICAS
+   ========================================================= */
+
+// Obtenemos el canvas y su contexto 2D (API de dibujo)
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+   Aquí se ajusta el comportamiento visual
+   ========================================================= */
+const config = {
+  fontSizeRange: [10, 25],     // Tamaño mínimo y máximo de los caracteres
+  speedRange: [0.5, 3],      // Velocidad mínima y máxima de caída por columna
+  columnLengthRange: [15, 25], // Cantidad de caracteres visibles por columna
+  hueRange: [90, 160],        // Tonos de verde (HSL)
+  fadeOpacity: 0.25,           // Qué tan rápido se desvanece el rastro
+  chars: '0123456789'                  // Caracteres que se dibujan
+};
+
+/* =========================================================
+   VARIABLES DE ESTADO
+   ========================================================= */
+
+// Array que contendrá todas las columnas de "lluvia"
+let columns = [];
+
+/* =========================================================
+   FUNCIONES AUXILIARES
+   ========================================================= */
+
+// Devuelve un número aleatorio entre min y max
+function rand(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+/* =========================================================
+   AJUSTE DE TAMAÑO
+   Se ejecuta al cargar y al redimensionar la ventana
+   ========================================================= */
+function resize() {
+  // Ajustamos el canvas al tamaño de la ventana
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Reiniciamos columnas
+  columns = [];
+
+  // Usamos el tamaño mínimo de fuente como referencia
+  const baseFont = config.fontSizeRange[0];
+
+  // Calculamos cuántas columnas caben en pantalla
+  const count = Math.floor(canvas.width / baseFont);
+
+  // Creamos cada columna
+  for (let i = 0; i < count; i++) {
+    columns.push(createColumn(i * baseFont));
+  }
+}
+
+/* =========================================================
+   CREA UNA COLUMNA DE LLUVIA
+   Cada columna es independiente
+   ========================================================= */
+function createColumn(x) {
+  return {
+    x: x,                                 // Posición horizontal
+    y: rand(-1000, 0),                    // Posición vertical inicial (arranca fuera de pantalla)
+    fontSize: rand(...config.fontSizeRange), // Tamaño de letra aleatorio
+    speed: rand(...config.speedRange),    // Velocidad de caída
+    length: Math.floor(rand(...config.columnLengthRange)), // Largo de la columna
+    hue: rand(...config.hueRange)         // Tono de color
+  };
+}
+
+// Ejecutamos resize al iniciar
+resize();
+
+// Reajustamos si la ventana cambia de tamaño
+window.addEventListener('resize', resize);
+
+/* =========================================================
+   BUCLE DE DIBUJADO (ANIMACIÓN)
+   ========================================================= */
+function draw() {
+
+  /* -------------------------------------------------------
+     EFECTO DE DESVANECIMIENTO
+     Pintamos un rectángulo negro semitransparente
+     para borrar lentamente el frame anterior
+     ------------------------------------------------------- */
+  ctx.fillStyle = `rgba(0, 0, 0, ${config.fadeOpacity})`;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  /* -------------------------------------------------------
+     DIBUJAMOS CADA COLUMNA
+     ------------------------------------------------------- */
+  for (const col of columns) {
+
+    // Definimos el tamaño de letra de esta columna
+    ctx.font = `${col.fontSize}px monospace`;
+
+    /* Recorremos cada carácter de la columna
+       i = 0 es la cabeza (el más brillante) */
+    for (let i = 0; i < col.length; i++) {
+
+      // Posición Y del carácter actual
+      const y = col.y - i * col.fontSize;
+
+      // Si está fuera de pantalla, no lo dibujamos
+      if (y < 0 || y > canvas.height) continue;
+
+      // Elegimos un carácter al azar
+      const char = config.chars[
+        Math.floor(Math.random() * config.chars.length)
+      ];
+
+      /* -----------------------------------------------
+         COLOR Y BRILLO
+         ----------------------------------------------- */
+      if (i === 0) {
+    // Cabeza: más clara que el resto de la columna
+    // Usamos el mismo hue, saturación y brillo
+    ctx.fillStyle = `hsl(${col.hue}, 99%, 90%)`;
+    } else {
+    // Cuerpo: se va apagando hacia la cola
+    const alpha = 1 - i / col.length;
+    ctx.fillStyle = `hsla(${col.hue}, 100%, 50%, ${alpha})`;
+    }
+
+      // Dibujamos el carácter
+      ctx.fillText(char, col.x, y);
+    }
+
+    // Hacemos avanzar la columna hacia abajo
+    col.y += col.speed;
+
+    /* ---------------------------------------------------
+       REINICIO DE COLUMNA
+       Cuando sale completamente de pantalla
+       --------------------------------------------------- */
+    if (col.y - col.length * col.fontSize > canvas.height) {
+      Object.assign(col, createColumn(col.x));
+    }
+  }
+
+  // Llamada recursiva sincronizada con el monitor
+  requestAnimationFrame(draw);
+}
+
+// Iniciamos la animación
+draw();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+    <iframe src="Fondo.html" class="fondo-iframe"></iframe>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minireto DAM - Equipo 2</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+        /* Canvas como fondo Matrix */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* detrás de todo */
+        }
+
+        /* Ajustes de visibilidad sobre el fondo */
+        body {
+            color: #fff; /* texto en blanco para contraste */
+            background-color: black; /* fondo negro */
+        }
+
+        /* Hacer secciones semi-translúcidas opcionalmente */
+        section {
+            background-color: rgba(236,240,241,0.9); /* fondo claro semi-transparente */
+            color: #333; /* texto oscuro */
+        }
+
+        nav {
+            background-color: rgba(78,111,145,0.8);
+        }
+
+        header, footer {
+            background-color: rgba(44,62,80,0.9);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Minireto Equipo 2 - DAM</h1>
+    <p>Desarrollo de Aplicaciones Multiplataforma</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="Index.html">INICIO</a></li>
+    <li><a href="Miembros.html">MIEMBROS</a></li>
+  </ul>
+</nav>
+
+<main>
+    <section class="introduccion">
+        <h2>Descripción del proyecto</h2>
+        <p><strong>Duración:</strong> 1 semana</p>
+        <p><strong>Tecnologías:</strong> Java, NetBeans, HTML, CSS</p>
+        <p>Os presentamos a los miembros de este equipo.</p>
+    </section>
+
+    <section class="miembros">
+        <h2>Miembros del equipo</h2>
+
+        <div class="lista">
+            <article class="miembro">
+                <h3>David</h3>
+                <p><strong>Alonso Casaiz</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Hector</h3>
+                <p><strong>Guerra Benito</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Saúl</h3>
+                <p><strong>Gutiérrez Ruiz</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Miguel</h3>
+                <p><strong>Meñaca Cuevas</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Guille</h3>
+                <p><strong>Muñoz Pando</strong></p>
+                <p>-</p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Minireto DAM - 2025</p>
+</footer>
+</body>
+</html>
