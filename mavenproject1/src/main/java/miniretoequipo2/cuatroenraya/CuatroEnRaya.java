@@ -38,7 +38,7 @@ public class CuatroEnRaya {
             }
             
             hayGanador = tablero.hayGanador(ficha);
-            //hayEmpate = tablero.comprobarEmpate();
+            hayEmpate = tablero.comprobarEmpate();
             
             
             if(hayGanador && ficha == 'X'){

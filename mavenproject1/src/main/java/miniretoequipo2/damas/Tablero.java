@@ -1,5 +1,7 @@
 package miniretoequipo2.damas;
 
+package miniretoequipo2.damas;
+
 /**
  *
  * @author DAM106
