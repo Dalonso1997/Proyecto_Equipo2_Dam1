@@ -131,7 +131,7 @@ public class Tablero {
     
     
     
-    public boolean posiblesMovimientos(String pos ,String destino){
+  /*  public boolean posiblesMovimientos(String pos ,String destino){
         
         int[] arrayOrigen = convertirPosicion(pos);
         int[] arrayDestino = convertirPosicion(destino);
@@ -149,7 +149,7 @@ public class Tablero {
                tablero[filaDestino][columnaDestino] == tablero[fila +1][columna +1] &&
                esCeldaVacia(filaDestino, columnaDestino) == true){
 
-                }
+                }*/
                 
             
             }
@@ -157,11 +157,8 @@ public class Tablero {
             
             
             
-        }
-
         
-    
-    }
+
     
     
     /*public boolean moverFicha(String origen, String destino){
