@@ -44,7 +44,15 @@ public class Damas {
                 }
 
                 int valor = tablero.obtenerValorCelda(origen);
-                if (valor != turno.getFichaTipo()) {
+
+                // Para jugador X acepta ficha normal (1) o dama (3)
+                if (turno.getFichaTipo() == 1 && valor != 1 && valor != 3) {
+                    System.out.println("Esa no es tu ficha o la casilla está vacía.");
+                    continue;
+                }
+
+                // Para jugador O acepta ficha normal (2) o dama (4)
+                if (turno.getFichaTipo() == 2 && valor != 2 && valor != 4) {
                     System.out.println("Esa no es tu ficha o la casilla está vacía.");
                     continue;
                 }

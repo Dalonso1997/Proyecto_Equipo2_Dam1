@@ -40,9 +40,14 @@ public class Tablero {
                     lineaCentral += " X ";
                 } else if (tablero[i][j] == 2) {
                     lineaCentral += " O ";
+                } else if (tablero[i][j] == 3) {
+                    lineaCentral += "K "; // Dama X
+                } else if (tablero[i][j] == 4) {
+                    lineaCentral += "Q "; // Dama O
                 } else {
                     lineaCentral += "   ";
                 }
+
             }
 
             lineaSuperior += "+";
@@ -126,7 +131,6 @@ public class Tablero {
     }
 
     public boolean posiblesMovimientos(String pos, String destino) {
-
         int[] arrayOrigen = convertirPosicion(pos);
         int[] arrayDestino = convertirPosicion(destino);
 
@@ -135,31 +139,26 @@ public class Tablero {
         int filaDestino = arrayDestino[0];
         int columnaDestino = arrayDestino[1];
 
-        // Comprobacion celda destino dentro del tablero
-        if (filaDestino < 0 || filaDestino >= 8 || columnaDestino < 0 || columnaDestino >= 8) {
+        if (!dentroDelTablero(filaDestino, columnaDestino)) {
             return false;
         }
-
-        // La celda destino debe estar vacía
         if (!esCeldaVacia(filaDestino, columnaDestino)) {
             return false;
         }
 
-        // Movimiento ficha X
-        if (tablero[fila][columna] == 1) {
-            // Movimiento normal o salto
-            if ((filaDestino == fila + 1 && (columnaDestino == columna - 1 || columnaDestino == columna + 1)) || esSalto(pos, destino) == true ) {
+        int ficha = tablero[fila][columna];
 
-                return true;
-            }
+        // Movimiento normal de ficha X o O
+        if (ficha == 1 && ((filaDestino == fila + 1 && Math.abs(columnaDestino - columna) == 1) || esSalto(pos, destino))) {
+            return true;
+        }
+        if (ficha == 2 && ((filaDestino == fila - 1 && Math.abs(columnaDestino - columna) == 1) || esSalto(pos, destino))) {
+            return true;
         }
 
-        // Movimiento ficha O
-        if (tablero[fila][columna] == 2) {
-            if ((filaDestino == fila - 1 && (columnaDestino == columna - 1 || columnaDestino == columna + 1)) || esSalto(pos, destino) == true) {
-
-                return true;
-            }
+        // Movimiento de Dama (3 o 4) en cualquier diagonal de 1 casilla o salto válido
+        if ((ficha == 3 || ficha == 4) && ((Math.abs(filaDestino - fila) == 1 && Math.abs(columnaDestino - columna) == 1) || esSalto(pos, destino))) {
+            return true;
         }
 
         return false;
@@ -175,16 +174,25 @@ public class Tablero {
         int columnaDestino = arrayDestino[1];
 
         // Comprobar que el movimiento es válido
-        if (posiblesMovimientos(origen, destino) == true) {
+        if (posiblesMovimientos(origen, destino)) {
 
-            // Si es un salto, se comera la ficha enemiga
-            if (esSalto(origen, destino) == true) {
+            // Si es un salto, se comerá la ficha enemiga
+            if (esSalto(origen, destino)) {
                 comerFicha(origen, destino);
             }
 
             // Mover ficha al destino
-            tablero[filaDestino][columnaDestino] = tablero[fila][columna];
+            int ficha = tablero[fila][columna];
+            tablero[filaDestino][columnaDestino] = ficha;
             tablero[fila][columna] = 0;
+
+            // CORONACIÓN: convertir en Dama si llega a la última fila
+            if (ficha == 1 && filaDestino == 7) {
+                tablero[filaDestino][columnaDestino] = 3; // Dama X
+            }
+            if (ficha == 2 && filaDestino == 0) {
+                tablero[filaDestino][columnaDestino] = 4; // Dama O
+            }
         }
     }
 
@@ -197,18 +205,24 @@ public class Tablero {
         int filaDestino = arrayDestino[0];
         int columnaDestino = arrayDestino[1];
 
-        // cmprobacion de que el salto sea exactamente de 2 filas y 2 columnas
         if (Math.abs(filaDestino - fila) == 2 && Math.abs(columnaDestino - columna) == 2) {
-            // posición de la ficha que podría ser comida
             int filaMedia = (fila + filaDestino) / 2;
             int columnaMedia = (columna + columnaDestino) / 2;
 
-            // Solo puede saltar sobre ficha enemiga
-            if (tablero[fila][columna] == 1 && tablero[filaMedia][columnaMedia] == 2) {
+            int ficha = tablero[fila][columna];
+            int rival = tablero[filaMedia][columnaMedia];
+
+            if (ficha == 1 && rival == 2) {
                 return true;
             }
-            if (tablero[fila][columna] == 2 && tablero[filaMedia][columnaMedia] == 1) {
+            if (ficha == 2 && rival == 1) {
                 return true;
+            }
+            if (ficha == 3 && (rival == 2 || rival == 4)) {
+                return true; // Dama X come ficha O o Dama O
+            }
+            if (ficha == 4 && (rival == 1 || rival == 3)) {
+                return true; // Dama O come ficha X o Dama X
             }
         }
 
