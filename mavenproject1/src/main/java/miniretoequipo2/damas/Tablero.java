@@ -1,6 +1,5 @@
 package miniretoequipo2.damas;
 
-
 /**
  *
  * @author DAM106
@@ -104,70 +103,133 @@ public class Tablero {
 
         return new int[]{fila, columna};
     }
-    
-    public int obtenerValorCelda(String pos){
-        
+
+    public int obtenerValorCelda(String pos) {
+
         int[] Array = convertirPosicion(pos);
         int fila = Array[0];
         int columna = Array[1];
         return tablero[fila][columna];
-        
-    
+
     }
-    
-    public boolean esCeldaVacia(String pos){
-    
-        int[] Array = convertirPosicion(pos);
-        int fila = Array[0];
-        int columna = Array[1];
-        if(tablero[fila][columna] != 1 && tablero[fila][columna] != 2){
+
+    public boolean esCeldaVacia(int fila, int columna) {
+        if (tablero[fila][columna] != 1 && tablero[fila][columna] != 2) {
             return true;
-        
-        }else{
-        
-        return false;
+        } else {
+            return false;
         }
     }
-    
-    
-    
-  /*  public boolean posiblesMovimientos(String pos ,String destino){
-        
+
+    public boolean dentroDelTablero(int fila, int columna) {
+        return fila >= 0 && fila < 8 && columna >= 0 && columna < 8;
+    }
+
+    public boolean posiblesMovimientos(String pos, String destino) {
+
         int[] arrayOrigen = convertirPosicion(pos);
         int[] arrayDestino = convertirPosicion(destino);
-        
+
         int fila = arrayOrigen[0];
         int columna = arrayOrigen[1];
-        
         int filaDestino = arrayDestino[0];
         int columnaDestino = arrayDestino[1];
 
+        // Comprobacion celda destino dentro del tablero
+        if (filaDestino < 0 || filaDestino >= 8 || columnaDestino < 0 || columnaDestino >= 8) {
+            return false;
+        }
 
-        if(tablero[fila][columna] == 1){ //Significa que es una ficha X
-          
-            if(tablero[filaDestino][columnaDestino] == tablero[fila +1][columna -1] || 
-               tablero[filaDestino][columnaDestino] == tablero[fila +1][columna +1] &&
-               esCeldaVacia(filaDestino, columnaDestino) == true){
+        // La celda destino debe estar vacía
+        if (!esCeldaVacia(filaDestino, columnaDestino)) {
+            return false;
+        }
 
-                }*/
-                
-            
+        // Movimiento ficha X
+        if (tablero[fila][columna] == 1) {
+            // Movimiento normal o salto
+            if ((filaDestino == fila + 1 && (columnaDestino == columna - 1 || columnaDestino == columna + 1)) || esSalto(pos, destino) == true ) {
+
+                return true;
+            }
+        }
+
+        // Movimiento ficha O
+        if (tablero[fila][columna] == 2) {
+            if ((filaDestino == fila - 1 && (columnaDestino == columna - 1 || columnaDestino == columna + 1)) || esSalto(pos, destino) == true) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void moverFicha(String origen, String destino) {
+        int[] arrayOrigen = convertirPosicion(origen);
+        int[] arrayDestino = convertirPosicion(destino);
+
+        int fila = arrayOrigen[0];
+        int columna = arrayOrigen[1];
+        int filaDestino = arrayDestino[0];
+        int columnaDestino = arrayDestino[1];
+
+        // Comprobar que el movimiento es válido
+        if (posiblesMovimientos(origen, destino) == true) {
+
+            // Si es un salto, se comera la ficha enemiga
+            if (esSalto(origen, destino) == true) {
+                comerFicha(origen, destino);
             }
 
-            
-            
-            
-        
-
-    
-    
-    /*public boolean moverFicha(String origen, String destino){
-    
-        int[] Arrayorigen = convertirPosicion(origen);
-        int[] Arraydestino = convertirPosicion(destino);
-        
-        
-    
-    
+            // Mover ficha al destino
+            tablero[filaDestino][columnaDestino] = tablero[fila][columna];
+            tablero[fila][columna] = 0;
+        }
     }
-}*/
+
+    public boolean esSalto(String origen, String destino) {
+        int[] arrayOrigen = convertirPosicion(origen);
+        int[] arrayDestino = convertirPosicion(destino);
+
+        int fila = arrayOrigen[0];
+        int columna = arrayOrigen[1];
+        int filaDestino = arrayDestino[0];
+        int columnaDestino = arrayDestino[1];
+
+        // cmprobacion de que el salto sea exactamente de 2 filas y 2 columnas
+        if (Math.abs(filaDestino - fila) == 2 && Math.abs(columnaDestino - columna) == 2) {
+            // posición de la ficha que podría ser comida
+            int filaMedia = (fila + filaDestino) / 2;
+            int columnaMedia = (columna + columnaDestino) / 2;
+
+            // Solo puede saltar sobre ficha enemiga
+            if (tablero[fila][columna] == 1 && tablero[filaMedia][columnaMedia] == 2) {
+                return true;
+            }
+            if (tablero[fila][columna] == 2 && tablero[filaMedia][columnaMedia] == 1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void comerFicha(String origen, String destino) {
+        int[] arrayOrigen = convertirPosicion(origen);
+        int[] arrayDestino = convertirPosicion(destino);
+
+        int fila = arrayOrigen[0];
+        int columna = arrayOrigen[1];
+        int filaDestino = arrayDestino[0];
+        int columnaDestino = arrayDestino[1];
+
+        //posición de la ficha que se va a comer
+        int filaMedia = (fila + filaDestino) / 2;
+        int columnaMedia = (columna + columnaDestino) / 2;
+
+        // Eliminación ficha del medio
+        tablero[filaMedia][columnaMedia] = 0;
+    }
+
+}
