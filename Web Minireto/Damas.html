@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Las Damas</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    iframe {
+      position: fixed; /* se queda como fondo */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: -1; /* para que quede detrás del contenido */
+    }
+
+    .contenido {
+      position: relative;
+      z-index: 1; /* contenido arriba del iframe */
+      color: white;
+      padding: 20px;
+    }
+  </style>
+  <iframe src="Fondo.html"></iframe>
+</head>
+<body>
+
+<header>
+    <h1>Las Damas</h1>
+    <h3>LoL Strike</h3>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="Index.html">INICIO</a></li>
+  </ul>
+</nav>
+
+<main>
+    <section>
+        <h2>Descripción</h2>
+        <p>
+        <strong>El juego de las Damas</strong> es un juego de mesa clásico para dos jugadores que se juega sobre un <strong>tablero de 64 casillas alternadas</strong> en colores claros y oscuros, utilizando únicamente las casillas oscuras. Cada jugador comienza con 12 piezas colocadas en las tres primeras filas de su lado del tablero. El objetivo es <strong>capturar todas las piezas del oponente</strong> o bloquear sus movimientos, moviendo las piezas en diagonal hacia adelante y saltando sobre las piezas contrarias para capturarlas. Cuando una pieza llega a la fila más lejana del tablero, se corona y se convierte en <strong>dama</strong>, adquiriendo la capacidad de moverse tanto hacia adelante como hacia atrás. Aunque sus reglas son simples, el juego exige <strong>estrategia, anticipación y planificación</strong>, lo que lo hace entretenido y desafiante para jugadores de todas las edades.
+        </p>
+
+        <h2>Características</h2>
+        <ul>
+            <li>Programación orientada a objetos</li>
+            <li>Uso de clases y métodos</li>
+            <li>Tablero de juego</li>
+            <li>Turnos entre jugadores</li>
+            <li>Movimientos válidos</li>
+            <li>Uso de clases para fichas y tablero</li>
+            <li>Este juego nos permitió practicar estructuras de control, clases, métodos y lógica de juego.</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Minireto DAM-Equipo 2- 2025</p>
+</footer>
+
+</body>
+</html>

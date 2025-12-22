@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+    <iframe src="Fondo.html" class="fondo-iframe"></iframe>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minireto DAM - Equipo 2</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    iframe {
+      position: fixed; /* se queda como fondo */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: -1; /* para que quede detrás del contenido */
+    }
+
+    .contenido {
+      position: relative;
+      z-index: 1; /* contenido arriba del iframe */
+      color: white;
+      padding: 20px;
+    }
+  </style>
+  <iframe src="Fondo.html"></iframe>
+</head>
+<body>
+
+<header>
+    <h1>LoL Strike</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="Index.html">INICIO</a></li>
+    <li><a href="Miembros.html">MIEMBROS</a></li>
+  </ul>
+</nav>
+
+<main>
+    <section class="introduccion">
+        <h2>Descripción del proyecto</h2>
+        <p><strong>Duración:</strong> 1 semana</p>
+        <p><strong>Tecnologías:</strong> Java, NetBeans, HTML, CSS</p>
+        <p>Os presentamos a los miembros de este equipo.</p>
+    </section>
+
+    <section class="miembros">
+        <h2>Miembros del equipo</h2>
+
+        <div class="lista">
+            <article class="miembro">
+                <h3>David</h3>
+                <p><strong>Alonso Casaiz</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Hector</h3>
+                <p><strong>Guerra Benito</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Saúl</h3>
+                <p><strong>Gutiérrez Ruiz</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Miguel</h3>
+                <p><strong>Meñaca Cuevas</strong></p>
+                <p>-</p>
+            </article>
+
+            <article class="miembro">
+                <h3>Guille</h3>
+                <p><strong>Muñoz Pando</strong></p>
+                <p>-</p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Minireto DAM-Equipo 2- 2025</p>
+</footer>
+</body>
+</html>

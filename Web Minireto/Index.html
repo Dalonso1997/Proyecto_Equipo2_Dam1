@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minireto DAM - Equipo 2</title>
+    <link rel="stylesheet" href="Style.css">
+     <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    iframe {
+      position: fixed; /* se queda como fondo */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: -1; /* para que quede detrás del contenido */
+    }
+
+    .contenido {
+      position: relative;
+      z-index: 1; /* contenido arriba del iframe */
+      color: white;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+    <iframe src="Fondo.html"></iframe>
+<header>
+    <h1>LoL Strike</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="Index.html">INICIO</a></li>
+        <li><a href="Miembros.html">MIEMBROS</a></li>
+  </ul>
+</nav>
+
+<main>
+    <section class="introduccion">
+        <h2>Descripción del proyecto</h2>
+        <p><strong>Duración:</strong> 1 semana</p>
+        <p><strong>Tecnologías:</strong> Java, NetBeans, HTML, CSS</p>
+        <p>Os presentamos los juegos que hemos implementado con Java orientado a objetos para el minireto de la primera evaluación.</p>
+    </section>
+
+    <section class="juegos">
+        <h2>Juegos desarrollados</h2>
+
+        <div class="lista">
+            <a href="carrera-autobuses.html" class="juego-link">
+                <article class="juego">
+                    <img src="imagenes/autobus_estatico.png"
+                    data-gif="imagenes/autobus_animado.gif" 
+                    class="juego-img"
+                    alt="Carrera de Autobuses">
+                    <h3>Carrera de Autobuses</h3>
+                    <p>
+                        Un juego de carreras donde dos autobuses avanzan de forma aleatoria
+                        hasta que uno alcanza la meta, apuesta quien ganará.
+                        ¿Logrará ganar tu favorito?
+                    </p>
+                </article>
+            </a>
+
+            <a href="damas.html" class="juego-link">
+                <article class="juego">
+                    <img src="imagenes/damas_estatico.png"
+                    data-gif="imagenes/damas_animado.gif" 
+                    class="juego-img"
+                    alt="Damas" >
+                    <h3>Las Damas</h3>
+                    <p>
+                        Representación del clásico juego de damas para dos jugadores. 
+                        Mueve tus fichas con estrategia y captura las del oponente para ganar. 
+                        ¿Podrás vencer a tu rival?
+                    </p>
+                </article>
+            </a>
+
+                        <a href="cuatro-en-raya.html" class="juego-link">
+                <article class="juego">
+                    <img src="imagenes/cuatro_estatico.png"
+                    data-gif="imagenes/cuatro_animado.gif" 
+                    class="juego-img"
+                    alt="Cuatro en raya" >
+                    <h3>Cuatro en raya</h3>
+                    <p>
+                        El clásico juego de Conecta Cuatro para dos jugadores. Coloca tus fichas 
+                        y trata de alinear cuatro en fila antes que tu oponente. 
+                        ¿Lograrás ganar la partida?
+                    </p>
+                </article>
+            </a>
+        </div>
+    </section>
+</main>
+<script>
+document.querySelectorAll('.juego').forEach(juego => {
+    const img = juego.querySelector('.juego-img');
+    const staticSrc = img.src;
+    const gifSrc = img.dataset.gif;
+
+    juego.addEventListener('mouseenter', () => {
+        img.src = gifSrc;
+    });
+
+    juego.addEventListener('mouseleave', () => {
+        img.src = staticSrc;
+    });
+});
+</script>
+<footer>
+    <p>&copy; Minireto DAM-Equipo 2- 2025</p>
+</footer>
+
+</body>
+</html>

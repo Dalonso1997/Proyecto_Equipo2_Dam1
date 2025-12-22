@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>0's y 1's</title>
+<style>
+  /* Se asegura de que el canvas ocupe toda la pantalla y sin scroll */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #292929; /* Color de fondo detrás del canvas */
+  }
+
+  /* El canvas se comporta como bloque, ocupa toda la pantalla */
+  canvas { display: block; }
+</style>
+</head>
+<body>
+
+<!-- Canvas donde se dibuja la animación-->
+<canvas id="matrix"></canvas>
+
+<script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+/* Configuración de la animación: tamaño, velocidad, colores y caracteres */
+const config = {
+  fontSizeRange: [40, 25],       // Tamaño de los caracteres
+  speedRange: [0.5, 3],          // Velocidad de caída
+  columnLengthRange: [15, 25],   // Largo de cada columna de caracteres
+  hueRange: [90, 160],           // rango de color
+  fadeOpacity: 0.25,             // Velocidad del desvanecimiento del rastro
+  chars: '0123456789'            // Caracteres que se dibujan
+};
+
+let columns = []; // Array que guarda todas las columnas de la animación
+
+// Función para generar números aleatorios entre min y max
+function rand(min, max) { return Math.random() * (max - min) + min; }
+
+// Crea una columna con propiedades aleatorias
+function createColumn(x) {
+  return {
+    x,
+    y: rand(-100, 10), //Altura de origen
+    fontSize: rand(...config.fontSizeRange),
+    speed: rand(...config.speedRange),
+    length: Math.floor(rand(...config.columnLengthRange)),
+    hue: rand(...config.hueRange)
+  };
+}
+
+// Ajusta el canvas al tamaño de la ventana y recalcula columnas
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  columns = [];
+  const baseFont = config.fontSizeRange[0];
+  for (let i = 0; i < Math.floor(canvas.width / baseFont); i++) {
+    columns.push(createColumn(i * baseFont));
+  }
+}
+
+// Función principal de dibujo (animación)
+function draw() {
+  // Fondo semi-transparente para efecto de rastro
+  ctx.fillStyle = `rgba(0,0,0,${config.fadeOpacity})`;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Dibuja cada columna de caracteres
+  for (const col of columns) {
+    ctx.font = `${col.fontSize}px monospace`;
+    for (let i = 0; i < col.length; i++) {
+      const y = col.y - i * col.fontSize;
+      if (y < 0 || y > canvas.height) continue;
+      const char = config.chars[Math.floor(Math.random() * config.chars.length)];
+      ctx.fillStyle = i === 0 
+        ? `hsl(${col.hue}, 99%, 90%)`        // Cabeza de la columna más brillante
+        : `hsla(${col.hue}, 100%, 50%, ${1 - i / col.length})`; // Resto con efecto de desvanecimiento
+      ctx.fillText(char, col.x, y);
+    }
+    col.y += col.speed;
+    // Reinicia columna si sale completamente de la pantalla
+    if (col.y - col.length * col.fontSize > canvas.height) Object.assign(col, createColumn(col.x));
+  }
+
+  requestAnimationFrame(draw); // Recursividad para animación continua
+}
+
+// Inicializa animación.
+resize();
+window.addEventListener('resize', resize);
+draw();
+</script>
+
+</body>
+</html>
