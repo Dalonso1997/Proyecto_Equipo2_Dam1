@@ -27,12 +27,20 @@ public class Tablero {
     }
 
     public void mostrarTablero() {
-        for (int i = 0; i < tablero.length; i++) { // filas
 
-            String lineaSuperior = "";   // línea superior de la fila
-            String lineaCentral = "";    // línea central de la fila
+        // Letras A-H
+        System.out.print("    ");
+        for (char c = 'A'; c <= 'H'; c++) {
+            System.out.print(" " + c + "  ");
+        }
+        System.out.println();
 
-            for (int j = 0; j < tablero[i].length; j++) { // columnas
+        for (int i = 0; i < tablero.length; i++) {
+
+            String lineaSuperior = "";
+            String lineaCentral = "";
+
+            for (int j = 0; j < tablero[i].length; j++) {
                 lineaSuperior += "+---";
                 lineaCentral += "|";
 
@@ -41,23 +49,27 @@ public class Tablero {
                 } else if (tablero[i][j] == 2) {
                     lineaCentral += " O ";
                 } else if (tablero[i][j] == 3) {
-                    lineaCentral += "K "; // Dama X
+                    lineaCentral += " K ";
                 } else if (tablero[i][j] == 4) {
-                    lineaCentral += "Q "; // Dama O
+                    lineaCentral += " Q ";
                 } else {
                     lineaCentral += "   ";
                 }
-
             }
 
             lineaSuperior += "+";
             lineaCentral += "|";
 
+            System.out.print("  ");
             System.out.println(lineaSuperior);
+
+            // NÚMEROS AL REVÉS (8 arriba, 1 abajo)
+            System.out.print((8 - i) + " ");
             System.out.println(lineaCentral);
 
             if (i == tablero.length - 1) {
-                System.out.println(lineaSuperior); // línea final inferior
+                System.out.print("  ");
+                System.out.println(lineaSuperior);
             }
         }
     }
