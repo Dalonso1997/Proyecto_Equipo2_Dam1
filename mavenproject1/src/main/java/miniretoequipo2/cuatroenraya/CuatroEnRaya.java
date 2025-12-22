@@ -30,8 +30,17 @@ public class CuatroEnRaya {
                 
                 System.out.println("Turno del jugador " + ficha);
                 System.out.print("Introduce la columna (1-7): ");
+                
+                if (!teclado.hasNextInt()){
+                    
+                    System.out.println("Entrada no valida.....");
+                    teclado.next();
+                    continue;
+                    
+                }
+                
                 int columna = teclado.nextInt();
-
+                
                 movimientoEfectuado = tablero.colocarFicha(columna, ficha);
 
                 if (!movimientoEfectuado) {
