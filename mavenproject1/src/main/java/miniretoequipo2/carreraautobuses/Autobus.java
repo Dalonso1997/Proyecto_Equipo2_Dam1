@@ -77,5 +77,5 @@ public class Autobus {
     public boolean isGanador() {
         return ganador;
     }
-
+    
 }
