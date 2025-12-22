@@ -33,20 +33,22 @@ public class Main {
                     }
 
                     int bus;
+                    Apuesta apuesta = null;
+                    Carrera c = new Carrera(100, buses); // crea una carrera 
                     do {
                         System.out.println("¿Por que bus quieres apostar?");
                         bus = new Scanner(System.in).nextInt();
-                        if (bus < 0 && bus > num) {
+                        if (bus < 1 || bus > num) {
                             System.out.println("No existe ese numero de bus.");
                         } else {
-                           Apuesta apuesta= new Apuesta(bus);
-                            
+                           apuesta= new Apuesta(c.getBus(bus));
+                           apuesta.apostar(bus);
                         }
-                    } while (bus < 0 && bus > num); // pide el numero de bus repitiendo hasta que sea valido
+                    } while (bus < 1 || bus > num); // pide el numero de bus repitiendo hasta que sea valido
                     
-                    Carrera c = new Carrera(100, buses); // crea una carrera y llama a los metodos de iniciar y dar ganador
                     c.iniciar();
                     c.darGanador();
+                    apuesta.compruebaApuesta();
                 }
 
                 case 2 ->

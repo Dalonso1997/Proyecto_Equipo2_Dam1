@@ -15,10 +15,10 @@ public class Apuesta {
 
     int dinero = 100;
     int apuesta = 0;
-    int bus;
+    Autobus bus;
 
-    public Apuesta(int bus) {
-        this.bus = bus;
+    public Apuesta(Autobus bus) {
+        this.bus=bus;
     }
 
     public void apostar(int bus) {
@@ -32,7 +32,18 @@ public class Apuesta {
                 } else {
                     System.out.println("Numero no valido");
                 }
+            } else {
+                dinero -= apuesta;
             }
         } while (apuesta < 0 && apuesta > dinero);
+    }
+    
+    public void compruebaApuesta(){
+        if (bus.isGanador()) {
+            System.out.println("Ganaste! Duplicas el dinero");
+            dinero += apuesta*2;
+        } else{
+            System.out.println("Perdiste :(");
+        }
     }
 }

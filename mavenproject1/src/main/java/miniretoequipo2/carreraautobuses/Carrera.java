@@ -74,4 +74,8 @@ public class Carrera {
     public int getNumBuses(){
         return buses.length;
     }
+    
+    public Autobus getBus(int i){
+        return buses[i];
+    }
 }
