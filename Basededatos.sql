@@ -70,9 +70,9 @@ CREATE TABLE IF NOT EXISTS resultado (
     CHECK (posicion > 0)
 );
 
--- TRIGGER: POSICIÓN ÚNICA POR PARTIDA
+-- TRIGGER
 /* Este trigger impide que dos jugadores obtengan la misma posición en una misma partida,
-   garantizando una regla del mundo real que no puede asegurarse solo con claves primarias o foráneas */
+garantizando una regla del mundo real que no puede asegurarse solo con claves primarias o foráneas */
 
 DELIMITER $$
 
