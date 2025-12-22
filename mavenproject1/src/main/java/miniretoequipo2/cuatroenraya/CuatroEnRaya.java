@@ -22,28 +22,28 @@ public class CuatroEnRaya {
 
         do {
             
-            tablero.mostrar();
+            tablero.mostrar();//Mostramos el tablero
             
-            boolean movimientoEfectuado = false;
+            boolean movimientoEfectuado = false; //Creamos el booleano para ver si el jugador ha podido hacer su movimiento o no
 
-            while (!movimientoEfectuado) {
+            while (!movimientoEfectuado) { //Bucle para el turno de cada jugador
                 
-                System.out.println("Turno del jugador " + ficha);
-                System.out.print("Introduce la columna (1-7): ");
+                System.out.println("Turno del jugador " + ficha); //Avisamos al  usuario de quien es el turno
+                System.out.print("Introduce la columna (1-7): "); //le pedimos la columna donde quiere colocar la ficha
                 
-                if (!teclado.hasNextInt()){
+                if (!teclado.hasNextInt()){ //Comprobacion de que el usuario pone un int, ya que si se equivoca y pone otra cosa, el sistema cae
                     
                     System.out.println("Entrada no valida.....");
-                    teclado.next();
+                    teclado.next();//Limpiamos el scanner en caso de que lo que contenga no sea un int 
                     continue;
                     
                 }
                 
-                int columna = teclado.nextInt();
+                int columna = teclado.nextInt(); 
                 
-                movimientoEfectuado = tablero.colocarFicha(columna, ficha);
+                movimientoEfectuado = tablero.colocarFicha(columna, ficha); //Le pasamos a la clase tablero.colocarficha la columna y ficha que pide el usuario
 
-                if (!movimientoEfectuado) {
+                if (!movimientoEfectuado) { //en caso de que el movimiento no sea posible, 
                     System.out.println("Columna llena o invalida. Intenta otra.");
                 }
             }

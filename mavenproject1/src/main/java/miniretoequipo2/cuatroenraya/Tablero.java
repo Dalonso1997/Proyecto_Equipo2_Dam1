@@ -13,11 +13,11 @@ public class Tablero {
     private char[][] celdas;
 
     public Tablero() {
-        celdas = new char[6][7];
+        celdas = new char[6][7]; //le damos al array los valores 6 (ancho) y 7 (largo) para crear el tablero 
         inicializar();
     }
 
-    private void inicializar() {
+    private void inicializar() { //Se inicia el tablero para crear los espacios
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 celdas[i][j] = ' ';
@@ -25,7 +25,7 @@ public class Tablero {
         }
     }
 
-    public void mostrar() {
+    public void mostrar() { //Se muestra el tablero.
         System.out.println();
         for (int i = 0; i < 6; i++) {
             System.out.print("|");
@@ -104,25 +104,4 @@ public class Tablero {
         }
         return false;
     }
-
-   /* public boolean comprobarEmpate() {
-
-        int contadorFichas = 0;
-
-        //para comprobar el empate, revisamos todo el tablero buscando si todos los huecos estan ocupados, en caso de que asi sea, el boolean pasa a true
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-
-                if (celdas[i][j] == ' ') {
-
-                    return false;
-
-                }
-
-            }
-
-        }
-        System.out.println("EMPATE!");
-        return true;
-    }*/
 }
