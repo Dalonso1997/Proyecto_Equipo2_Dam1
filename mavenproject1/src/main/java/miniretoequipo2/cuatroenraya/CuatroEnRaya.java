@@ -19,14 +19,15 @@ public class CuatroEnRaya {
         boolean hayGanador = false;
         char ficha = 'X';
         int jugadas = 42;
-
+        boolean salir = false;
+        
         do {
             
             tablero.mostrar();//Mostramos el tablero
             
             boolean movimientoEfectuado = false; //Creamos el booleano para ver si el jugador ha podido hacer su movimiento o no
 
-            while (!movimientoEfectuado) { //Bucle para el turno de cada jugador
+            while (!movimientoEfectuado && salir == false) { //Bucle para el turno de cada jugador
                 
                 System.out.println("Turno del jugador " + ficha); //Avisamos al  usuario de quien es el turno
                 System.out.print("Introduce la columna (1-7): "); //le pedimos la columna donde quiere colocar la ficha
@@ -41,9 +42,17 @@ public class CuatroEnRaya {
                 
                 int columna = teclado.nextInt(); 
                 
+                if (columna == 0) {
+                    
+                    salir = true;
+                    System.out.println("Saliendo.....Hasta pronto!!");
+                    
+                }
+                
+                
                 movimientoEfectuado = tablero.colocarFicha(columna, ficha); //Le pasamos a la clase tablero.colocarficha la columna y ficha que pide el usuario
 
-                if (!movimientoEfectuado) { //en caso de que el movimiento no sea posible, 
+                if (!movimientoEfectuado && salir == false){ //en caso de que el movimiento no sea posible, 
                     System.out.println("Columna llena o invalida. Intenta otra.");
                 }
             }
@@ -128,7 +137,7 @@ public class CuatroEnRaya {
                 ficha = 'X';
             }
 
-        } while (!hayGanador && jugadas != 0);
+        } while (!hayGanador && jugadas != 0 && salir == false);
         
         
         try {
