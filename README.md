@@ -1,6 +1,7 @@
 # Proyecto_Equipo2_Dam1
 PRESENTACIÓN EQUIPO 2
 https://docs.google.com/presentation/d/1ncu4lhpbSHAmoEV3hdwfd0_faUCgcn-1q3QFCPSTp_g/edit?usp=sharing
+
 # Mini Reto – Mini Juegos en Java
 
 ## Descripción del proyecto
@@ -15,7 +16,6 @@ Consiste en el desarrollo de una aplicación de **mini juegos programados en Jav
 - David Alonso  
 - Hector Guerra 
 
-_(Sustituir por los nombres reales del equipo)_
 
 ---
 
