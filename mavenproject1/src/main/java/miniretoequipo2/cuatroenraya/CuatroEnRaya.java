@@ -30,7 +30,7 @@ public class CuatroEnRaya {
             while (!movimientoEfectuado && salir == false) { //Bucle para el turno de cada jugador
                 
                 System.out.println("Turno del jugador " + ficha); //Avisamos al  usuario de quien es el turno
-                System.out.print("Introduce la columna (1-7): "); //le pedimos la columna donde quiere colocar la ficha
+                System.out.print("Introduce la columna (1-7) o pulse 0 para SALIR: "); //le pedimos la columna donde quiere colocar la ficha
                 
                 if (!teclado.hasNextInt()){ //Comprobacion de que el usuario pone un int, ya que si se equivoca y pone otra cosa, el sistema cae
                     
