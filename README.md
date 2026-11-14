@@ -1,70 +1,52 @@
-# Proyecto_Equipo2_Dam1
-PRESENTACIÓN EQUIPO 2
-https://docs.google.com/presentation/d/1ncu4lhpbSHAmoEV3hdwfd0_faUCgcn-1q3QFCPSTp_g/edit?usp=sharing
+# 🎮 Mini Reto — Minijuegos en Java
 
-# Mini Reto – Mini Juegos en Java
+![Java](https://img.shields.io/badge/Java-24-ED8B00?logo=openjdk&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?logo=apachemaven&logoColor=white)
+![Consola](https://img.shields.io/badge/interfaz-consola-333333)
+![Equipo](https://img.shields.io/badge/trabajo-en%20equipo-blueviolet)
 
-## Descripción del proyecto
-Este proyecto corresponde a un Mini Reto del ciclo de **Desarrollo de Aplicaciones Multiplataforma (DAM)**, Grupo 2.  
-Consiste en el desarrollo de una aplicación de **mini juegos programados en Java**, cuyo objetivo es aplicar de forma práctica los conocimientos adquiridos en los distintos módulos del ciclo mediante el trabajo en equipo.
+Aplicación de consola con un menú de **tres minijuegos** programados en Java orientado a objetos. Es el mini reto intermodular de 1º de DAM (2025/26), hecho por el **Equipo 2**.
 
----
+📊 [Presentación del proyecto](https://docs.google.com/presentation/d/1ncu4lhpbSHAmoEV3hdwfd0_faUCgcn-1q3QFCPSTp_g/edit?usp=sharing)
 
-## Miembros del equipo
-- Guille Muñoz  
-- Saul Gutierrez
-- David Alonso  
-- Hector Guerra 
+## 🕹️ Juegos
 
+| Juego | Descripción |
+|---|---|
+| 🚌 **Carrera de autobuses** | Eliges cuántos autobuses compiten, apuestas por uno y la carrera avanza por turnos hasta que hay un ganador |
+| ⚫ **Damas** | Damas para dos jugadores sobre un tablero en consola |
+| 🔴 **Cuatro en raya** | Cuatro en raya clásico para dos jugadores |
 
----
+## 🧱 Estructura
 
-## Resultados obtenidos
-Los mini juegos desarrollados **funcionan correctamente** y cumplen con los requisitos básicos establecidos.  
-A pesar de contar con **un integrante menos en el equipo**, el resultado final es satisfactorio, demostrando una buena organización y reparto de tareas.
+```
+mavenproject1/src/main/java/miniretoequipo2/
+├── Main.java               # Menú principal
+├── carreraautobuses/       # Autobus, Carrera, Apuesta
+├── damas/                  # Damas, Tablero, Fichas, Jugador
+└── cuatroenraya/           # CuatroEnRaya, Tablero
+```
 
----
+Conceptos que se trabajan: clases y objetos, arrays y matrices (tableros), estructuras de control, separación de cada juego en su propio paquete y reparto del trabajo en equipo con Git.
 
-## Tecnologías utilizadas
-- Java  
-- NetBeans  
-- MySQL  
-- VirtualBox  
-- Máquinas virtuales  
-- ChatGPT  
-- Google  
+## 🚀 Cómo ejecutarlo
 
----
+```bash
+git clone https://github.com/Dalonso1997/Proyecto_Equipo2_Dam1.git
+cd Proyecto_Equipo2_Dam1/mavenproject1
+mvn clean package
+mvn exec:java
+```
 
-## Resultados esperados por módulo
-Este proyecto permite aplicar conocimientos de distintos módulos del ciclo DAM:
+También se puede abrir la carpeta `mavenproject1` en NetBeans y ejecutar `Main`.
 
-- **Programación**  
-  Desarrollo de la lógica de los mini juegos, uso de estructuras de control, clases, métodos y gestión de errores.
+## 👥 Equipo
 
-- **Bases de Datos**  
-  Uso de MySQL para el almacenamiento de datos como puntuaciones o información de usuario.
+- Guille Muñoz
+- Saúl Gutiérrez
+- David Alonso
+- Héctor Guerra
 
-- **Entornos de Desarrollo**  
-  Gestión del proyecto y organización del código mediante NetBeans.
+## ✅ Valoración y mejoras
 
-- **Sistemas Informáticos**  
-  Configuración y uso de máquinas virtuales con VirtualBox.
-
-- **Otros módulos**  
-  Documentación del proyecto y correcta estructuración de la información.
-
----
-
-## Valoración del proyecto
-La valoración general del proyecto es positiva, ya que se han cumplido los objetivos principales planteados inicialmente.  
-El trabajo ha permitido reforzar conocimientos técnicos y mejorar la coordinación y el trabajo en equipo.
-
----
-
-## Mejoras propuestas
-- Añadir más mini juegos.  
-- Mejorar la interfaz gráfica y la presentacion.  
-- Implementar un sistema de apuestas.  
-- Optimizar el código y aplicar mejores prácticas.  
-- Ampliar la documentación técnica.
+Los tres juegos funcionan y cumplen los requisitos del reto, y eso que el equipo tuvo un integrante menos. Como mejoras quedan pendientes añadir más juegos, una interfaz gráfica, guardar las puntuaciones en base de datos y seguir refactorizando el código.
